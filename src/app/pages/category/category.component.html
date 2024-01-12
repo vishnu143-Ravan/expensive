@@ -1,0 +1,108 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Category</h4>
+        </div>
+        <div>
+          <button class="d-block mr-0 ml-auto btn btn-secondary"  data-toggle="modal" data-target="#addCatDataModal">Add category</button>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-primary">
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th *ngIf="add_button_cat_status">Sub-Category</th>
+                <th *ngIf="add_button_cat_status">Edit</th>
+                <th *ngIf="add_button_cat_status">Delete</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of category; let i=index">
+                  <td>
+                    {{ i+1}}
+                  </td>
+                  <td>
+                    {{ item.Name }}
+                  </td>
+                  <td>
+                    {{ item.Description }}
+                  </td>
+                  <td  *ngIf="add_button_cat_status">
+                    <button class="btn btn-warning" (click)="GoToSubCategory(i)">Sub-Category</button>
+                  </td>
+                  <td *ngIf="add_button_cat_status">
+                    <button class="btn btn-primary" (click)="EditCatDetailsClick(item)" data-toggle="modal" data-target="#editCatDetailsaModal" >Edit</button>
+                  </td>
+                  <td *ngIf="add_button_cat_status">
+                    <button class="btn btn-danger" (click)="DeleteCattableData(item.Id)">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="editCatDetailsaModal" tabindex="-1" role="dialog" aria-labelledby="editCatDetailsaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editCatDetailsaModalLabel">Edit Category</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <div class="form-group">
+              <input type="text" class="form-control" [(ngModel)]="editDetails.Name"  placeholder="Category Name">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" [(ngModel)]="editDetails.Description"  placeholder="Description">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="FinalCatEditDetails()" data-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="modal fade" id="addCatDataModal" tabindex="-1" role="dialog" aria-labelledby="addCatDataModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addCatDataModalLabel">Add Category</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <div class="form-group">
+              <select class="form-control" >
+                <option value="">Select Expenses</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" [(ngModel)]="Name"  placeholder="Item Name">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" [(ngModel)]="Description"  placeholder="Description">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="AddCatdata()" data-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

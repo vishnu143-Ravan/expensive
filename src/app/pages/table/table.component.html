@@ -1,0 +1,119 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Monthly Expensive</h4>
+      </div>
+      <button class="d-block mr-0 ml-auto btn btn-secondary"  data-toggle="modal" data-target="#addDataModal">Add details</button>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary">
+              <th>Date</th>
+              <th>Expenses</th>
+              <th>Purpose</th>
+              <th>Amount</th>
+              <th>Category</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of tableData;let i=index">
+                <td>
+                  {{ item.Date}}
+                </td>
+                <td>
+                  {{ item.Expenses }}
+                </td>
+                <td>
+                  {{ item.Purpose }}
+                </td>
+                <td>
+                  {{ item.Amount }}
+                </td>
+                <td>
+                  <button class="btn btn-warning" (click)="GoToCategory(i)">Category</button>
+                </td>
+                <td>
+                  <button class="btn btn-primary" (click)="EditDetailsClick(item,i)" data-toggle="modal" data-target="#editDetailsaModal" >Edit</button>
+                </td>
+                <td>
+                  <button class="btn btn-danger" (click)="DeletetableData(item.Id)">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editDetailsaModal" tabindex="-1" role="dialog" aria-labelledby="editDetailsaModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editDetailsaModalLabel">Edit Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="editDetails.Date"  placeholder="Date">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="editDetails.Expenses"  placeholder="Expenses">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="editDetails.Purpose"  placeholder="Purpose">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="editDetails.Amount"  placeholder="Amount">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="FinalEditDetails()" data-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="addDataModal" tabindex="-1" role="dialog" aria-labelledby="addDataModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addDataModalLabel">Add Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="Date"  placeholder="Date">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="Expenses"  placeholder="Expenses">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="Purpose"  placeholder="Purpose">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="Amount"  placeholder="Amount">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="Adddata()" data-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

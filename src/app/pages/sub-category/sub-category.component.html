@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Sub-category</h4>
+        </div>
+        <div>
+          <button class="d-block mr-0 ml-auto btn btn-secondary"  data-toggle="modal" data-target="#addSubCatDataModal">Add Sub category</button>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-primary">
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Action</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of subcategory_data;let i=index">
+                  <td>
+                    {{ i+1 }}
+                  </td>
+                  <td>
+                    {{ item.Name }}
+                  </td>
+                  <td>
+                    {{ item.Description }}
+                  </td>
+                  <td style="display: flex; justify-content: space-between;">
+                    <button class="btn btn-primary" (click)="EditDetailsClick(item,i)" data-toggle="modal" data-target="#editDetailsaModal" >Edit</button>
+                    <button class="btn btn-danger" (click)="DeletetableData(item.Id)">
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="editDetailsaModal" tabindex="-1" role="dialog" aria-labelledby="editDetailsaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editDetailsaModalLabel">Edit SubCategory</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <div class="form-group">
+              <input type="text" class="form-control" [(ngModel)]="editDetails.Name"  placeholder="Name">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" [(ngModel)]="editDetails.Description"  placeholder="Description">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="FinalEditDetails()" data-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="modal fade" id="addSubCatDataModal" tabindex="-1" role="dialog" aria-labelledby="addSubCatDataModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addSubCatDataModalLabel">Add SubCategory</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <div class="form-group">
+              <select class="form-control" >
+                <option value="">Select category</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" [(ngModel)]="Name"  placeholder="SubCategory Name">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" [(ngModel)]="Description"  placeholder="Description">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="Adddata()" data-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
